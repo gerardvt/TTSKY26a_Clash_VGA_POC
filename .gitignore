@@ -1,4 +1,3 @@
-src/gvt_core.v
 clash/dist-newstyle/
 clash/verilog/
 clash/build/
