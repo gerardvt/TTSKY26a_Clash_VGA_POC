@@ -16,7 +16,7 @@ echo "==> Generating Verilog..."
 cabal exec clash -- --verilog -isrc Top -outputdir build
 
 echo "==> Copying to src/gvt_core.v..."
-VERILOG=$(find . -name 'tt_um_ttsky26a_gvt.v' | head -1)
+VERILOG=$(find . -name 'tt_um_gerardvt_clash_poc.v' | head -1)
 sed -i '' '/timescale/d' "$VERILOG"
 cp "$VERILOG" "$DEST"
 

@@ -16,7 +16,7 @@ import Clash.Annotations.TopEntity (PortName(..))
 import VgaTiming
 
 {-# ANN topEntity (Synthesize
-  { t_name   = "tt_um_ttsky26a_gvt"
+  { t_name   = "tt_um_gerardvt_clash_poc"
   , t_inputs = [ PortName "clk"
                , PortName "rst_n"  -- active-low; converted internally
                , PortName "ena"
