@@ -81,7 +81,7 @@ This is a chicken-and-egg situation: the playground needs the compiled Verilog t
 
 In this submission repo, `src/gvt_core.v` is **removed from `.gitignore` and committed** alongside the Clash source. The CI still regenerates it on every workflow run (overwriting the committed copy), so it always reflects the current source. When "Submit a new revision" is clicked on the TT project page, TT captures the HEAD SHA at that point — a commit that includes `gvt_core.v` — and the playground can fetch it successfully.
 
-The trade-off is that `gvt_core.v` appears as a tracked file even though it is a build artefact. This is a deliberate compromise, made only in the submission repo. The development repo (`ttsky26a-gvt-design`) keeps generated Verilog gitignored as normal practice.
+The trade-off is that `gvt_core.v` appears as a tracked file even though it is a build artefact. This is a deliberate compromise specific to this submission repo, where playground compatibility takes priority over the usual practice of gitignoring generated files.
 
 ---
 
