@@ -157,3 +157,5 @@ cd test && make clean && make   # run cocotb tests
 ```
 
 Test results are written to `test/results.xml`. Waveforms are dumped to `test/tb.fst` (viewable with GTKWave or Surfer).
+
+> **Note:** The above covers RTL simulation only. Running the docs validation and GDS build locally requires further integration with the tooling provided by [TinyTapeout/tt-support-tools](https://github.com/TinyTapeout/tt-support-tools). This has not yet been tested and is deferred for a future update.
