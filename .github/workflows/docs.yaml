@@ -13,5 +13,34 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Setup GHC and Cabal
+        uses: haskell-actions/setup@v2
+        with:
+          ghc-version: '9.6.7'
+          cabal-version: 'latest'
+
+      - name: Cache Cabal store and dist-newstyle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cabal/store
+            clash/dist-newstyle
+          key: cabal-${{ runner.os }}-ghc9.6.7-${{ hashFiles('clash/vga-colorbars.cabal') }}
+          restore-keys: cabal-${{ runner.os }}-ghc9.6.7-
+
+      - name: Build Clash compiler
+        run: |
+          cd clash
+          cabal update
+          cabal build exe:clash
+
+      - name: Generate Verilog from Clash
+        run: |
+          cd clash
+          cabal exec clash -- --verilog -isrc Top -outputdir build
+          VERILOG=$(find . -name 'tt_um_ttsky26a_gvt.v' | head -1)
+          sed -i '/timescale/d' "$VERILOG"
+          cp "$VERILOG" ../src/gvt_core.v
+
       - name: Build docs
         uses: TinyTapeout/tt-gds-action/docs@ttsky26a
